@@ -1,5 +1,5 @@
 name: BuildRelease
-  
+
 on:
   push:
     branches: [ "main" ]
@@ -7,7 +7,6 @@ on:
     branches: [ "main" ]
 
 env:
-  # Path to the solution file relative to the root of the project.
   SOLUTION_FILE_PATH: .
 
 permissions:
@@ -23,14 +22,14 @@ jobs:
       with:
         arch: win32
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Build
-      working-directory: ${{env.GITHUB_WORKSPACE}}
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: ./build_release.bat
-      
+
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-          name: ReleaseBuild
-          path: ./out/build/x86-release/TeamSCALEFORM.dll
+        name: ReleaseBuild
+        path: ./out/build/x86-release/TeamSCALEFORM.dll
